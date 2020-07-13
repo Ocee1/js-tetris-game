@@ -66,17 +66,16 @@
 
     //make the tetromino move down every second
     timerId = setInterval(moveDown, 1000)
-
-    //assign functions tp keycodes
+       //assign functions tp keycodes
     function control(e) {
         if(e.keycode === 37) {
             moveLeft()
         } else if (e.keycode === 38) {
-            //rotate()
+            rotate()
         } else if (e.keycode === 39) {
             moveRight()
         } else if (e.keycode === 40) {
-            moveDown
+            moveDown()
         }
     }
     document.addEventListener('keyup', control)
@@ -128,7 +127,16 @@
         draw()
     }
 
-
+    //rotate the tetromino
+    function rotate() {
+        undraw()
+        currentRotation ++
+        if(currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
+        currentRotation =0
+        }
+        current = theTetrominoes[random][currentRotation]
+        draw()
+    }
     
 
 
